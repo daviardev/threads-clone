@@ -1,0 +1,122 @@
+---
+import { Icon } from 'astro-icon/components'
+
+const currentPath = Astro.url.pathname
+
+const navigation = [
+  {
+    name: 'Home',
+    href: '/',
+    activeIcon: 'navbar/home-fill',
+    inactiveIcon: 'navbar/home',
+  },
+  {
+    name: 'Search',
+    href: '/search',
+    activeIcon: 'navbar/search',
+    inactiveIcon: 'navbar/search',
+  },
+  {
+    name: 'Create',
+    href: '/create',
+    inactiveIcon: 'navbar/plus',
+  },
+  {
+    name: 'Activities',
+    href: '/activities',
+    activeIcon: 'navbar/heart',
+    inactiveIcon: 'navbar/heart-fill',
+  },
+  {
+    name: 'Profile',
+    href: '/login',
+    activeIcon: 'navbar/user-fill',
+    inactiveIcon: 'navbar/user',
+  },
+]
+
+const logoClasses = 'hover:scale-110 transition-transform duration-150 text-white w-full h-9'
+const navItemClassesBase = 'group flex items-center justify-center p-4 transition-colors duration-150 ease-out gap-1 hover:bg-white/5 rounded-xl';
+const iconBaseClasses = 'h-6 w-6';
+const iconLargeClasses = 'w-[26px] h-[26px]';
+---
+
+<header class="sticky left-0 mx-auto items-center grid top-0 z-50 h-16 my-auto sm:hidden bg-[#101010D9] backdrop-blur-2xl">
+  <span class="max-sm:my-auto max-sm:mx-auto max-sm:grid-cols-2 w-8">
+    <a
+      aria-label="Threads"
+      title="Threads"
+      href="/"
+      class="relative py-4 flex w-full justify-between items-center z-50 max-h-[60px] sm:max-h-full h-full"
+    >
+      <Icon
+        name="logo"
+        class="hover:scale-110 transition-transform duration-150 text-white w-full h-7"
+      />
+    </a>
+  </span>
+  
+    <div class="absolute right-3 bottom-3">
+      {
+        false ? (
+        <Icon
+          name="navbar/more"
+          class="h-7 w-7 text-secondary cursor-pointer"
+        />
+        ) : (
+          <button
+            class="text-sm px-3 w-full bg-white text-black rounded-xl h-[34px] flex justify-center items-center font-bold"
+          >
+            Login in
+          </button>
+        )}
+      
+    </div>
+</header>
+
+<aside class="fixed bottom-0 z-50 w-full sm:left-0 sm:top-0 sm:h-screen sm:w-20">
+  <div class="flex h-16 items-center justify-around sm:h-full sm:flex-col sm:justify-start sm:gap-4 sm:py-4">
+    <div class="hidden sm:pb-14 sm:flex">
+      <a
+        href="/"
+        aria-label="Threads"
+        title="Threads"
+        class="flex items-center justify-center"
+    >
+        <Icon
+            name="logo"
+            class={logoClasses}
+        />
+      </a>
+    </div>
+
+    <nav class="flex w-full items-center backdrop-blur-2xl sm:bg-transparent justify-around sm:flex-col sm:items-center sm:justify-start sm:gap-3 sm:my-3">
+      {navigation.map(item => {
+        const isActive = currentPath === item.href;
+        const iconClasses = [iconBaseClasses, (item.href === '/favorites' || item.href === '/profile') ? iconLargeClasses : ''].join(' ');
+
+        return (
+          <a
+            href={item.href}
+            title={item.name}
+            aria-label={item.name}
+            class={`${navItemClassesBase} ${isActive ? 'text-white' : 'text-secondary'}`}
+          >
+            <Icon name={isActive ? item.activeIcon : item.inactiveIcon} class={iconClasses} />
+            {item.href === '/create' && (
+              <div class="w-14 h-14 absolute bg-white/5 rounded-xl" />
+            )}
+          </a>
+        );
+      })}
+    </nav>
+    <div class="hidden sm:py-14 sm:flex">
+        <button>
+            <Icon
+                name='navbar/more'
+                class='text-secondary scale-x-[-1] hover:text-white transition-colors ease-out duration-150 w-7 h-7'
+            />
+        </button>
+    </div>
+  </div>
+</aside>
