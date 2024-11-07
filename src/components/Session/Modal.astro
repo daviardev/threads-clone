@@ -1,0 +1,66 @@
+---
+interface Props {
+    id: string;
+    title: string;
+}
+
+const { id, title } = Astro.props;
+---
+
+<div id={id} class="fixed inset-0 z-50 hidden">
+  <div class="absolute inset-0 bg-black opacity-50" data-overlay></div>
+  <div class="absolute inset-0 flex flex-col items-center justify-center">
+    <div class="bg-[#181818] w-full h-full sm:w-[576px] sm:h-fit sm:rounded-xl p-3 sm:p-8 text-white border border-neutral-700">
+      <button type="button" class="border px-3 py-2 rounded-xl border-outlineFocus sm:flex hidden close-button">
+        Cancel
+      </button>
+      <div class="flex gap-8 justify-between sm:hidden">
+        <button type="button" class="close-button">Cancel</button>
+        <h2 class="font-bold text-lg">{title}</h2>
+      </div>
+      <h1 class="text-white font-bold text-center hidden sm:block p-3">
+        {title}
+        <hr class="mt-4 border-outlineFocus">
+      </h1>
+      <div class="bottom-2 right-0 flex items-center justify-between absolute w-full px-4 py-2 sm:relative sm:mt-8 sm:p-0">
+        <slot />
+      </div>
+    </div>
+  </div>
+</div>
+
+<script define:vars={{ id }}>
+  const setupModal = (modalId) => {
+    const modal = document.getElementById(modalId);
+    if (!modal) return;
+
+    const overlay = modal.querySelector("[data-overlay]");
+    const closeButtons = modal.querySelectorAll(".close-button");
+
+    const openModal = () => {
+      modal.classList.remove("hidden");
+      document.body.style.overflow = "hidden";
+    };
+
+    const closeModal = () => {
+      modal.classList.add("hidden");
+      document.body.style.overflow = ""
+    };
+
+    overlay?.addEventListener("click", closeModal);
+
+    closeButtons.forEach(button => {
+      button.addEventListener("click", closeModal);
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !modal.classList.contains("hidden")) {
+        closeModal();
+      }
+    });
+
+    window[`openModal_${modalId}`] = openModal;
+  };
+
+  setupModal(id);
+</script>
