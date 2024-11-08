@@ -1,0 +1,101 @@
+---
+import { Icon } from "astro-icon/components";
+
+import { Image } from "astro:assets";
+
+import LoginLayout from "@/components/Layout/LoginLayout.astro";
+
+import Modal from '@/components/Common/Modal.astro'
+
+import SignUp from "@/components/Forms/SignUp" 
+import SignIn from "@/components/Forms/SignIn";
+import ForgotPassword from "@/components/Forms/ForgotPassword";
+---
+
+<LoginLayout title="Log in">
+    <div class="bg-primary min-h-screen flex flex-col items-center justify-center">
+        <header class="absolute w-full h-full top-0 right-0 left-0 overflow-hidden sm:block hidden z-0">
+          <Image 
+            src="/images/threads.webp" 
+            alt="Threads Background" 
+            class="object-cover"
+            width={1750}
+            height={510}
+            loading="eager"
+            style={{
+                width: '1750px',
+                height: '510px'
+            }}
+          >
+        </header>
+      <span>
+        <Icon
+            name='logo'
+            class="text-primaryText w-16 h-16 block sm:hidden"
+        />
+        </span>
+        <div class="mt-[15vh] max-sm:mt-0 mb-14 px-6 py-6 w-full z-10 max-w-md text-primaryText">
+            <div class="w-full flex flex-col">
+                <span
+                    style=
+                    "
+                        word-wrap: break-word;
+                        word-break: break-word;
+                    "
+                    class="mb-4 text-center font-bold relative text-base"
+                >
+                    <p>Log in your account</p>
+                </span>
+                <SignIn client:load />
+               
+                <span class="mt-4 text-center text-footer text-sm *:mt-4">
+                    <button 
+                        type="button" 
+                        data-open-modal="forgotPassword" 
+                        class="hover:underline"
+                    >
+                        Forgot password?
+                    </button>
+                </span>
+
+                <span class="flex items-center py-6 text-center text-sm text-footer">
+                    <hr class="flex-grow border-t border-outlineFocus"/>
+                    <p class="px-4">or</p>
+                    <hr class="flex-grow border-t border-outlineFocus"/>
+                </span>
+
+                <button type="button" data-open-modal="createAccount" class="py-5 w-full border border-outlineFocus border-solid px-3 flex flex-row text-center items-center cursor-pointer rounded-xl">
+                    <p class="w-full justify-center flex text-primaryText font-bold text-base">
+                        Create account
+                    </p>
+                    <span class="text-footer text-xl">&#10095;</span>
+                </button>
+                <Modal
+                    id="forgotPassword"
+                    title="Forgot password"
+                >
+                    <ForgotPassword client:load />
+                </Modal>
+
+            <Modal
+                id="createAccount"
+                title="Create Account"
+            >
+            <SignUp client:load />
+            </Modal>
+            </div>
+        </div>
+      </div>
+</LoginLayout>
+
+<script>
+  document.querySelectorAll('[data-open-modal]').forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      const modalId = trigger.getAttribute('data-open-modal');
+      const openFn = window[`openModal_${modalId}`];
+      if (typeof openFn === 'function') {
+        openFn();
+      }
+    });
+  });
+  </script>
