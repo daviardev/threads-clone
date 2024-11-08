@@ -19,16 +19,31 @@ const { title } = Astro.props
     <title>Threads • {title}</title>
 </head>
 <body>
-    <Toaster
-        client:load
-            position="bottom-center"
-            reverseOrder={false}
-    />
-    <div>
+        <Toaster
+            client:load
+            position='bottom-center'
+            reverseOrder
+            gutter={8}
+            toastOptions={{
+                duration: 3000,
+                className: "",
+                style: {
+                    maxWidth: "100%",
+                    background: "#fff",
+                    color: "#000",
+                    boxShadow: "0 8px 20px rgba(0, 0, 0, .2), 0 2px 4px 0 rgba(0, 0, 0, .1)",
+                    borderRadius: "8px",
+                    paddingRight: "14px",
+                    paddingLeft: "14px",
+                    paddingTop: "10px",
+                    paddingBottom: "10px",
+                    alignItems: "center"
+                }
+            }}
+        />
         <main class="flex flex-col min-h-screen relative bg-primary">
             <slot />
         </main>
         <Footer />
-    </div>
 </body>
 </html>
