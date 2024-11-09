@@ -117,7 +117,7 @@ export default function SignIn () {
 
       <button
         type="submit"
-        className={`w-full h-full mb-2 px-4 py-4 rounded-xl text-center text-base font-semibold outline-none transition-transform ease-in-out active:scale-95 ${
+        className={`w-full h-full mb-2 px-4 py-4 rounded-xl text-center text-base font-semibold outline-none ${
           isButtonEnabled
             ? "bg-white text-button cursor-pointer"
             : "bg-white text-gray-400 cursor-not-allowed"
