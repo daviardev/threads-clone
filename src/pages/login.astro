@@ -49,13 +49,12 @@ import ForgotPassword from "@/components/Forms/ForgotPassword";
                 <SignIn client:load />
                
                 <span class="mt-4 text-center text-footer text-sm *:mt-4">
-                    <button 
-                        type="button" 
+                    <p
                         data-open-modal="forgotPassword" 
-                        class="hover:underline"
+                        class="hover:underline cursor-pointer"
                     >
                         Forgot password?
-                    </button>
+                </p>
                 </span>
 
                 <span class="flex items-center py-6 text-center text-sm text-footer">
@@ -81,7 +80,7 @@ import ForgotPassword from "@/components/Forms/ForgotPassword";
                 id="createAccount"
                 title="Create Account"
             >
-            <SignUp client:load />
+                <SignUp client:load />
             </Modal>
             </div>
         </div>
