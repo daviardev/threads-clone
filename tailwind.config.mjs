@@ -5,12 +5,15 @@ export default {
 		extend: {
 			colors: {
 				primary: 'rgb(10,10,10)',
-				secondary: '#4d4d4d',
+				secondary: '#777777',
 				footer: 'rgb(119,119,119)',
 				primaryText: 'rgb(243,245,247)',
 				button: 'rgb(16,16,16)',
 				inputText: 'rgb(30,30,30)',
 				outlineFocus: 'rgba(243,245,247,.15)'
+			},
+			fontSize: {
+				normal: '15px'
 			}
 		},
 	},
