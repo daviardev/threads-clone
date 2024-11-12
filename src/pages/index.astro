@@ -1,7 +1,77 @@
 ---
+import InputPost from "@/components/Common/InputPost.astro"
 import MainLayout from "../components/Layout/MainLayout.astro"
+import Post from "@/components/Common/Post.astro"
+
+const posts = [
+	{
+		username: 'John Doe',
+		avatar: 'https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250',
+		id: "No no la puedo",
+		message: `Que diferencia hay entre una botella de cerveza y una mujer? Que ambas sirven de arriba para abajo
+		dsadlksajldkja
+		
+		No me funen.
+		
+		Attle: El camas 2.0`,
+		image: "https://i.pinimg.com/originals/9d/30/62/9d3062ab9975477b076266b34fe7badc.jpg",
+		createAt: "hoy."
+	},
+	{
+		username: "Simon cuck",
+		id: "Todo un chad",
+		message: `El negrito chocolate Simon Cuck de la PSA
+		
+		Va pasando por la calle, que harias?
+		
+		yo me la follaria la velda`,
+		image: "https://i.pinimg.com/736x/22/5d/47/225d4703da71ede2094927c00c997b2c.jpg",
+		createdAt: "Ayer",
+		likes: 777,
+		shares: 666,
+		replies: 778,
+		likedBy: "John Doe"
+	},
+	{
+		username: 'John Doe',
+		avatar: 'https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250',
+		id: "No no la puedo",
+		message: `Que diferencia hay entre una botella de cerveza y una mujer? Que ambas sirven de arriba para abajo
+		dsadlksajldkja
+		
+		No me funen.
+		
+		Attle: El camas 2.0`,
+		image: "https://i.pinimg.com/originals/9d/30/62/9d3062ab9975477b076266b34fe7badc.jpg",
+		createAt: "hoy."
+	},
+]
 ---
 
 <MainLayout title="Home">
-	Titulos
+	{
+	true ? (
+		<InputPost />
+		
+		<div>
+			{
+				posts.map(post => (
+					<Post
+						id={post.id}
+						username={post.username}
+						avatar={post.avatar}
+						message={post.message}
+						replies={post.replies}
+						likes={post.likes}
+						shares={post.shares}
+						image={post.image}
+						createdAt={post.createAt}
+						likedBy={post.likedBy}
+					/>
+				))
+			}
+		</div>
+
+	) : <h1>Start session</h1>
+	}
 </MainLayout>
