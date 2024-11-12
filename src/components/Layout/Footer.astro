@@ -22,9 +22,9 @@ const { pathname } = Astro.url;
 const currentPath = pathname === '/login';
 ---
 
-<footer class={`h-16 w-full ${
+<footer class={`h-full w-full ${
     currentPath ? 'mb-0' : 'mb-20 sm:mb-0'
-  } bottom-0 flex items-center text-center px-4 absolute`}>
+  } bottom-0 flex items-center text-center px-4 py-4`}>
     <ul class="mx-auto text-center text-footer">
         {navigation.map((item, index) => {
             const isYearDate = index === 0;
