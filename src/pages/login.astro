@@ -10,6 +10,8 @@ import Modal from '@/components/Common/Modal.astro'
 import SignUp from "@/components/Forms/SignUp" 
 import SignIn from "@/components/Forms/SignIn";
 import ForgotPassword from "@/components/Forms/ForgotPassword";
+
+import "@/utils/open-modal.astro"
 ---
 
 <LoginLayout title="Log in">
@@ -86,15 +88,3 @@ import ForgotPassword from "@/components/Forms/ForgotPassword";
         </div>
       </div>
 </LoginLayout>
-
-<script>
-  document.querySelectorAll('[data-open-modal]').forEach(trigger => {
-    trigger.addEventListener('click', () => {
-      const modalId = trigger.getAttribute('data-open-modal');
-      const openFn = window[`openModal_${modalId}`];
-      if (typeof openFn === 'function') {
-        openFn();
-      }
-    });
-  });
-  </script>

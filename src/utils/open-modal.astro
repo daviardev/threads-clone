@@ -1,0 +1,12 @@
+<script>
+    document.querySelectorAll('[data-open-modal]').forEach(trigger => {
+    trigger.addEventListener('click', () => {
+        const modalId = trigger.getAttribute('data-open-modal')
+
+        const openFn = window[`openModal_${modalId}`]
+
+        typeof openFn === 'function'
+        && openFn()
+    })
+})
+</script>
