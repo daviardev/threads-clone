@@ -1,26 +1,24 @@
 ---
-import { Image } from "astro:assets";
+import Avatar from "./Avatar.astro"
+
+import "@/utils/open-modal.astro"
 ---
 
 <div class="w-full sm:flex hidden">
     <div class="flex flex-col w-full select-none">
         <div class="flex w-full my-4">
-            <span class="relative flex shrink-0 overflow-hidden rounded-full outline outline-1 outline-[hsl(0,0%,20%)] h-9 w-9 mr-4">
-                <Image
-                    src="https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18yajFubTNHTUxNMUtNZTJ5RVZWT3RkUmM1NEgifQ"
-                    class="aspect-square h-full w-full object-cover"
-                    alt="daviardev"
-                    loading="eager"
-                    width={36}
-                    height={36}
-                />
-            </span>
-            <div class="py-0 my-0 w-full cursor-text select-none flex items-center">
-                <span class="text-start w-full max-w-full relative block text-[#777777]">
+           <Avatar
+                src="https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18yajFubTNHTUxNMUtNZTJ5RVZWT3RkUmM1NEgifQ"
+                alt="author"
+                width={36}
+                height={36}
+           />
+            <div class="py-0 my-0 w-full cursor-text select-none flex items-center" data-open-modal="createPost">
+                <span class="text-start w-full max-w-full relative block text-secondary">
                     What's new?
                 </span>
             </div>
-            <button class="rounded-xl font-semibold text-[15px] inline-flex items-center justify-center text-sm disabled:pointer-events-none disabled:opacity-50 h-9 px-4 cursor-not-allowed bg-white/30 select-none text-black">Post</button>
+            <button class="rounded-xl font-semibold text-normal inline-flex items-center justify-center text-sm disabled:pointer-events-none disabled:opacity-50 h-9 px-4 cursor-not-allowed bg-white/30 select-none text-black" data-open-modal="createPost">Post</button>
         </div>
         <hr class="shrink-0 border-outlineFocus">
     </div>
