@@ -1,0 +1,22 @@
+---
+import { Image } from 'astro:assets'
+
+interface Props {
+    src: string
+    alt: string
+    width: number
+    height: number
+}
+
+const { src, alt, width, height } = Astro.props
+---
+
+<span class="relative flex shrink-0 overflow-hidden rounded-full outline outline-1 outline-[hsl(0,0%,20%)] h-9 w-9 mr-4">
+    <Image
+        src={src}
+        alt={alt}
+        loading="eager"
+        width={width}
+        height={height}
+    />
+</span>
