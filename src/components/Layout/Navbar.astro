@@ -1,6 +1,11 @@
 ---
 import { Icon } from 'astro-icon/components'
 
+import PostModal from '../Modal/post-modal.astro'
+import SigninAccount from '../Modal/signin-account.astro'
+
+import '@/utils/open-modal.astro'
+
 const currentPath = Astro.url.pathname
 
 const navigation = [
@@ -18,8 +23,10 @@ const navigation = [
   },
   {
     name: 'Create',
-    href: '/create',
+    href: '#',
     inactiveIcon: 'navbar/plus',
+    isModal: true,
+    modalId: !true ? 'createPost' : 'signin'
   },
   {
     name: 'Activities',
@@ -41,7 +48,7 @@ const iconBaseClasses = 'h-6 w-6';
 const iconLargeClasses = 'w-[26px] h-[26px]';
 ---
 
-<header class="sticky left-0 mx-auto items-center grid top-0 z-50 h-16 my-auto bg-[#101010d9] sm:bg-transparent backdrop-blur-2xl">
+<header class="sticky left-0 mx-auto items-center grid top-0 z-50 h-16 my-auto max-sm:bg-[#101010d9] max-sm:backdrop-blur-2xl">
   <span class="max-sm:my-auto items-center text-center max-sm:mx-auto max-sm:grid-cols-2">
         <a
           aria-label="Threads"
@@ -54,14 +61,10 @@ const iconLargeClasses = 'w-[26px] h-[26px]';
             class="hover:scale-110 transition-transform duration-150 text-white w-full h-7"
           />
         </a>
-
-        <a aria-label="Home" class="font-bold text-base hidden sm:block" href="/">
-          Home
-        </a>
   </span>
   
     <div class="absolute right-3 bottom-3">
-      {true ? (
+      {false ? (
         <Icon
           name="navbar/more"
           class="h-7 w-7 text-secondary cursor-pointer flex sm:hidden"
@@ -77,7 +80,6 @@ const iconLargeClasses = 'w-[26px] h-[26px]';
             </a>
           </button>
         )}
-      
     </div>
 </header>
 
@@ -97,23 +99,33 @@ const iconLargeClasses = 'w-[26px] h-[26px]';
       </a>
     </div>
 
-    <nav class="flex w-full items-center backdrop-blur-2xl sm:bg-transparent justify-around sm:flex-col sm:items-center sm:justify-start sm:gap-3 sm:my-3">
+    <nav class="flex w-full h-full items-center backdrop-blur-2xl bg-[#101010d9] sm:bg-transparent justify-around sm:flex-col sm:items-center sm:justify-start sm:gap-3 sm:my-3">
       {navigation.map(item => {
         const isActive = currentPath === item.href;
         const iconClasses = [iconBaseClasses, (item.href === '/favorites' || item.href === '/profile') ? iconLargeClasses : ''].join(' ');
 
         return (
-          <a
-            href={item.href}
-            title={item.name}
-            aria-label={item.name}
-            class={`${navItemClassesBase} ${isActive ? 'text-white' : 'text-secondary'}`}
-          >
-            <Icon name={isActive ? item.activeIcon : item.inactiveIcon} class={iconClasses} />
-            {item.href === '/create' && (
-              <div class="w-14 h-14 absolute bg-white/5 rounded-xl" />
-            )}
-          </a>
+          item.isModal ? (
+            <button
+              type="button"
+              data-open-modal={item.modalId}
+              title={item.name}
+              aria-label={item.name}
+              class={`${navItemClassesBase} ${isActive ? 'text-white' : 'text-secondary'}`}
+            >
+              <Icon name={isActive ? item.activeIcon : item.inactiveIcon} class={iconClasses} />
+              <div class="w-14 h-14 absolute bg-white/5 rounded-xl"></div>
+            </button>
+          ) : (
+            <a
+              href={item.href}
+              title={item.name}
+              aria-label={item.name}
+              class={`${navItemClassesBase} ${isActive ? 'text-white' : 'text-secondary'}`}
+            >
+              <Icon name={isActive ? item.activeIcon : item.inactiveIcon} class={iconClasses} />
+            </a>
+          )
         );
       })}
     </nav>
@@ -121,9 +133,12 @@ const iconLargeClasses = 'w-[26px] h-[26px]';
         <button>
             <Icon
                 name='navbar/more'
-                class='text-secondary scale-x-[-1] hover:text-white transition-colors ease-out duration-150 w-7 h-7'
+                class='text-secondary -scale-x-100 hover:text-white transition-colors ease-out duration-150 w-7 h-7'
             />
         </button>
     </div>
   </div>
 </aside>
+
+<PostModal />
+<SigninAccount />
