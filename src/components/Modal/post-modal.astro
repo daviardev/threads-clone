@@ -1,0 +1,128 @@
+---
+import Modal from "../Common/Modal.astro"
+import Avatar from "../Common/Avatar.astro"
+---
+
+<Modal id="createPost" title="Create New Post">
+  <div
+    style="scrollbar-width: none;"
+    class="sm:max-h-[60vh] max-h-[90vh] overflow-y-auto w-full"
+  >
+  <div class="flex">
+    <div class="relative flex flex-col items-center">
+      <a href="/@author">
+          <Avatar
+              alt="author"
+              src="https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18yajFubTNHTUxNMUtNZTJ5RVZWT3RkUmM1NEgifQ"
+              width={38}
+              height={38}
+            />
+        </a>
+        <div class="h-full w-0.5 bg-secondary -translate-x-2 mt-2 rounded-full"></div>
+    </div>
+    <div class="flex flex-col w-full gap-1.5 pb-6">
+        <span class="text-normal font-medium leading-none tracking-normal">devdaviar</span>
+        <div class="
+          grid
+          text-sm
+          after:px-3.5
+          after:py-2.5
+          [&>textarea]:text-inherit
+          after:text-inherit
+          [&>textarea]:resize-none
+          [&>textarea]:overflow-hidden
+          [&>textarea]:[grid-area:1/1/2/2]
+          after:[grid-area:1/1/2/2]
+          after:whitespace-pre-wrap
+          after:invisible
+          after:content-[attr(data-cloned-val)_'_']
+          after:border
+      ">
+      <textarea
+          class="flex-grow resize-none overflow-hidden outline-none text-normal h-full break-words placeholder:text-secondary w-full bg-transparent tracking-normal"
+          name="message"
+          id="message"
+          rows="2"
+          oninput="this.parentNode.dataset.clonedVal = this.value"
+          placeholder="What's new?" 
+          required
+          maxlength="1000"
+      />
+    </div>
+        <label for="fileInput" class="space-y-2 mt-1 select-none w-fit text-secondary">
+          <span class="bg-neutral-600 w-0.5 rounded-full block"/>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+              height="20"
+              role="img"
+              viewBox="0 0 24 24"
+              width="20"
+              class="h-5 w-5 select-none transform active:scale-75 transition-transform cursor-pointer">
+              <title>Attach media</title>
+            <g>
+              <path
+                clip-rule="evenodd"
+                d="M2.00207 9.4959C1.65132 7.00019 1.47595 5.75234 1.82768 4.73084C2.13707 3.83231 2.72297 3.05479 3.50142 2.50971C4.38639 1.89005 5.63425 1.71467 8.12996 1.36392L10.7047 1.00207C13.2004 0.651325 14.4482 0.47595 15.4697 0.827679C16.3682 1.13707 17.1458 1.72297 17.6908 2.50142C17.9171 2.82454 18.0841 3.19605 18.2221 3.65901C17.7476 3.64611 17.2197 3.64192 16.6269 3.64055C16.5775 3.5411 16.5231 3.44881 16.4621 3.36178C16.0987 2.84282 15.5804 2.45222 14.9814 2.24596C14.3004 2.01147 13.4685 2.12839 11.8047 2.36222L7.44748 2.97458C5.78367 3.20841 4.95177 3.32533 4.36178 3.73844C3.84282 4.10182 3.45222 4.62017 3.24596 5.21919C3.01147 5.90019 3.12839 6.73209 3.36222 8.3959L3.97458 12.7531C4.15588 14.0431 4.26689 14.833 4.50015 15.3978C4.50083 16.3151 4.50509 17.0849 4.53201 17.7448C4.13891 17.4561 3.79293 17.1036 3.50971 16.6991C2.89005 15.8142 2.71467 14.5663 2.36392 12.0706L2.00207 9.4959Z"
+                fill="currentColor"
+                fill-rule="evenodd"
+              />
+              <g
+                id="Frame 290280">
+                <g clip-path="url(#clip0_16905_4767)">
+                  <rect
+                    fill="none"
+                    height="15.5"
+                    rx="3.75"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    width="15.5"
+                    x="6.75"
+                    y="5.8894"
+                  />
+                  <path
+                    d="M6.6546 17.8894L8.59043 15.9536C9.1583 15.3857 10.0727 15.3658 10.6647 15.9085L12.5062 17.5966C12.9009 17.9584 13.5105 17.9451 13.8891 17.5665L17.8181 13.6376C18.4038 13.0518 19.3536 13.0518 19.9394 13.6375L22.0663 15.7644"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                  />
+                  <circle
+                    cx="10.75"
+                    cy="9.8894"
+                    fill="currentColor"
+                    r="1.25"
+                  />
+                </g>
+              </g>
+            </g>
+            <defs>
+              <clipPath
+                id="clip0_16905_4767"
+              >
+              <rect
+                fill="white"
+                height="17"
+                rx="4.5"
+                width="17"
+                x="6"
+                y="5.1394"
+              />
+            </clipPath>
+          </defs>
+            </svg>
+          <input
+            id="fileInput"
+            hidden
+            accept="image/*"
+            type="file"
+          />
+        </label>
+    </div>
+  </div>
+  <span class="flex w-full items-center justify-between pt-6">
+    <p class="text-base text-secondary">Anyone can reply</p>
+    <button>Post</button>
+  </span>
+</div>
+</Modal>

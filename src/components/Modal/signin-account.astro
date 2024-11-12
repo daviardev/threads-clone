@@ -1,0 +1,28 @@
+---
+import { Icon } from "astro-icon/components";
+
+import Modal from "../Common/Modal.astro";
+---
+
+<Modal title="Sign in to post" id="signin">
+    <div class="mx-auto pb-8">
+        <div class="flex flex-col">
+            <span class="justify-center flex items-center">
+                <Icon
+                    name="post"
+                    class="w-12 h-12 relative block"
+                />
+            </span>
+            <h2 class="font-extrabold text-primaryText text-center text-4xl mb-4">Sign up to post</h2>
+        </div>
+        <span class="max-w-[336px] block mx-auto">
+            <p class="w-full font-normal text-center text-secondary">Join Threads to share ideas, ask questions, post random thoughts and more.</p>
+        </span>
+        <a href="/login" type="button" data-open-modal="createAccount" class="py-5 mt-5 w-full border border-outlineFocus border-solid px-3 flex flex-row text-center items-center cursor-pointer rounded-xl">
+            <p class="w-full justify-center flex text-primaryText font-bold text-base">
+                Sign in or sign up account
+            </p>
+            <span class="text-footer text-xl">&#10095;</span>
+        </a>
+    </div>
+</Modal>
