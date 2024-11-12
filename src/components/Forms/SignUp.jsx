@@ -208,7 +208,7 @@ export default function SignUp () {
                     <Loader className="animate-spin" />
                 </div>
                 ) : (
-                "Log in"
+                "Create account"
                 )}
             </button>
         </form>
